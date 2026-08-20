@@ -1,0 +1,80 @@
+# ---------------------------------------------------------------------------
+#  MossKeeperLTuccar - Mesaj Dosyasi
+#  %primary% %secondary% %text% %error% -> config.yml > colors bolumunden gelir.
+#  Bos birakilan ("") mesajlar oyuncuya hic gonderilmez.
+# ---------------------------------------------------------------------------
+
+general:
+  no-permission: "%text%Bu işlemi gerçekleştirmek için yeterli yetkiye sahip değilsiniz."
+  player-only: "%text%Bu komut yalnızca oyun içerisinden kullanılabilir."
+  invalid-number: "%text%Girdiğiniz &#ffd500%deger% %text%geçerli bir sayı değil."
+  positive-number: "%text%Fiyat değeri &#ffd5000&#ffd500'dan %text%büyük olmalıdır."
+  reloaded: "%text%Yapılandırma dosyaları &#00D420başarıyla %text%yenilendi. &8(%sure%ms)"
+  reload-failed: "%text%&#FF4B4B%dosya% %text%okunamadı! Eski ayarlar korunuyor, konsolu kontrol edin."
+  data-loading: "%text%Veriler hâlâ yükleniyor, lütfen birkaç saniye sonra tekrar deneyin."
+
+usage:
+  header: "&8&m-----------------&r %primary%Şanslı Tüccar &8&m-----------------"
+  footer: "&8&m--------------------------------------------------"
+  lines:
+    - "%secondary%/şanslıtüccar ürün oluştur <ürün_ismi>"
+    - "  %text%↳ Yeni bir takas profili oluşturur."
+    - "%secondary%/şanslıtüccar takasverilecek ekle <ürün_ismi>"
+    - "  %text%↳ Elinizdeki eşyayı, takas ödülü olarak kaydeder."
+    - "%secondary%/şanslıtüccar takaskarşılığı ekle <ürün_ismi>"
+    - "  %text%↳ Elinizdeki eşyayı, istenecek ödeme olarak kaydeder."
+    - "%secondary%/şanslıtüccar takasanafiyatı ekle <miktar> <ürün_ismi>"
+    - "  %text%↳ Menüde üzeri çizili gösterilecek ana fiyat."
+    - "%secondary%/şanslıtüccar takasindirimfiyatı ekle <miktar> <ürün_ismi>"
+    - "  %text%↳ Oyuncunun fiilen ödeyeceği indirimli fiyat."
+    - "%secondary%/şanslıtüccar ürün sil <ürün_ismi> &8| %secondary%liste"
+    - "  %text%↳ Ürün profilini siler / tüm ürünleri listeler."
+    - "%secondary%/şanslıtüccar npc yerleştir &8| %secondary%npc sil"
+    - "  %text%↳ Fiziksel tüccarı konumunuza kurar veya kaldırır."
+    - "%secondary%/şanslıtüccar menü &8| %secondary%yenile"
+    - "  %text%↳ Test menüsünü açar / config dosyalarını yeniler."
+
+item:
+  hand-empty: "%text%Bu komutu kullanmak için elinizde bir eşya tutmalısınız."
+
+product:
+  created: "%text%&#00D420%urun% %text%adlı takas profili oluşturuldu."
+  already-exists: "%text%&#00D420%urun% %text%adında bir takas profili zaten mevcut."
+  not-found: "%text%&#00D420%urun% %text%adında bir takas profili bulunamadı."
+  deleted: "%text%&#00D420%urun% %text%adlı takas profili silindi."
+  invalid-name: "%text%Ürün ismi yalnızca harf, rakam, alt çizgi ve tire içerebilir (en fazla 32 karakter)."
+  give-set: "%text%&#00D420%urun% %text%ürününün ödülü &#00D420%esya% %text%olarak ayarlandı."
+  cost-set: "%text%&#00D420%urun% %text%ürününün karşılığı &#00D420%esya% %text%olarak ayarlandı."
+  main-price-set: "%text%&#00D420%urun% %text%ürününün ana fiyatı &#ffd500%miktar% %text%olarak ayarlandı."
+  discount-price-set: "%text%&#00D420%urun% %text%ürününün indirimli fiyatı &#ffd500%miktar% %text%olarak ayarlandı."
+  discount-too-high: "%text%İndirimli fiyat, ana fiyattan &#ffd500(%ana_fiyat%) %text%yüksek olamaz."
+  main-price-too-low: "%text%Ana fiyat, indirimli fiyattan &#ffd500(%indirim_fiyat%) %text%düşük olamaz."
+  # KOYLU modunda vanilla ekrani tek yigindan fazlasini gosteremez.
+  price-exceeds-stack: "%text%&#ffd500%miktar% %text%değeri, &#00D420%esya% %text%için sınırı (&#ffd500%limit%&7) aşıyor. Köylü menüsünde &#ffd500%limit%&7 olarak gösterilir."
+  now-active: "%text%&#00D420%urun% %text%artık tüccar menüsünde &#00D420aktif&7."
+  incomplete: "%text%&#00D420%urun% %text%henüz yayında değil. Eksikler: &#ffd500%eksikler%"
+  list-header: "&8&m-----------------&r %primary%Takas Profilleri &8&m-----------------"
+  list-line: "%secondary%▸ &#00D420%urun% &8| %text%Fiyat: &#ffd500&m%ana_fiyat%&r &8» &#ffd500%indirim_fiyat% &8| %durum%"
+  list-empty: "%text%Henüz hiç takas profili oluşturulmamış."
+  status-active: "&#00D420● Aktif"
+  status-inactive: "&#FF4B4B● Eksik"
+
+npc:
+  placed: "%text%Şanslı Tüccar bu konuma &#00D420yerleştirildi&7. &8(%dunya% %x%, %y%, %z%) &8[&#ffd500%sayi%&8/&#ffd500%limit%&8]"
+  removed: "%text%Şanslı Tüccar &#FF4B4Bkaldırıldı&7."
+  not-found: "%text%Yakınınızda (&#ffd500%yaricap% blok&7) eklentiye ait bir tüccar bulunamadı."
+  world-disabled: "%text%Bu dünyada tüccar yerleştiremezsiniz. &8(config.yml ▸ npc.disabled-worlds)"
+  limit-reached: "%text%Tüccar sayısı sınırına ulaşıldı &#ffd500(%limit%)&7. &8(config.yml ▸ npc.max-count)"
+  spawn-blocked: "%text%Tüccar oluşturulamadı; başka bir eklenti bu konumda canlı doğmasını engelliyor."
+
+trade:
+  # NPC'ye tiklandiginda / menu acildiginda. Bos birakilirsa gonderilmez.
+  menu-opening: ""
+  no-products: "%text%Tüccarın şu anda takas edebileceği bir ürünü yok."
+  not-enough: "%text%Bu takas için &#ffd500%gerekli%x %esya% %text%gerekiyor, sende &#ffd500%mevcut%x %text%var."
+  inventory-full: "%text%Envanterinde yeterli boş yer bulunmuyor."
+  # Yalnizca SANDIK modunda gecerlidir (config.yml > settings.trade-cooldown-ms).
+  cooldown: "%text%Biraz yavaş! Bir sonraki takas için kısa bir süre bekle."
+  success: "%text%&#00D420%esya% %text%satın alındı! &8(&#ffd500-%odenen%x %karsilik%&8)"
+  success-bulk: "%text%&#00D420%adet%x %esya% %text%satın alındı! &8(&#ffd500-%odenen%x %karsilik%&8)"
+  dropped: "%text%Envanterin dolduğu için bazı eşyalar yere bırakıldı."

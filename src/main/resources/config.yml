@@ -1,0 +1,173 @@
+# ---------------------------------------------------------------------------
+#  MossKeeperLTuccar  |  wulnrydev
+#  Renkler: &7 gibi eski kodlar VE &#RRGGBB HEX formati desteklenir.
+#  ONEMLI: GUI basliklari daima &0 (siyah) ile baslamalidir.
+#
+#  Not: Yeni surumde eklenen ayarlar bu dosyaya otomatik olarak islenir;
+#  elle duzenlediginiz degerler korunur.
+# ---------------------------------------------------------------------------
+
+settings:
+  # Tum mesajlarin basina eklenen on ek.
+  prefix: "&#15FF08Şanslı Tüccar &8▸ "
+  # Urun/NPC verileri diske kac dakikada bir otomatik yazilsin? (asenkron)
+  # Yazma atomiktir: once .tmp dosyasina yazilir, bir onceki surum .bak olarak saklanir.
+  auto-save-minutes: 5
+  # Ayni oyuncunun art arda takas spamlamasini engelleyen bekleme (milisaniye).
+  # YALNIZCA "SANDIK" menu tipinde gecerlidir; koylu ekraninda takasi vanilla yurutur.
+  # 0 = kapali.
+  trade-cooldown-ms: 350
+  # NPC'ye sag tiklama arasindaki en kisa sure (milisaniye).
+  # Istemci tek tikta iki paket gonderebildigi icin menunun iki kez acilmasini onler.
+  npc-interact-cooldown-ms: 250
+  # Konsola detayli hata/debug ciktisi basilsin mi?
+  debug: false
+
+# ---------------------------------------------------------------------------
+#  RENK PALETI - Mesajlarda %primary% / %secondary% / %text% ile kullanilir.
+# ---------------------------------------------------------------------------
+colors:
+  text: "&7"
+  primary: "&#00D420"
+  secondary: "&#ffd500"
+  error: "&#FF4B4B"
+
+# ---------------------------------------------------------------------------
+#  GUI (Menu) AYARLARI
+# ---------------------------------------------------------------------------
+gui:
+  # ---------------------------------------------------------------------
+  #  MENU TIPI
+  #  KOYLU  -> Vanilla koylu takas ekrani. Ana fiyat, oyunun kendi
+  #            arayuzunde UZERI CIZILI olarak gorunur; indirimli fiyat
+  #            aktif fiyattir. (onerilen / varsayilan)
+  #
+  #            DIKKAT: Bu modda "product-lore" KULLANILMAZ. Vanilla ekranda
+  #            gosterilen odul esyasi, oyuncunun fiilen aldigi esyanin ta
+  #            kendisidir; ona lore eklemek lore'u kalici olarak oyuncunun
+  #            envanterine tasirdi. Ozel lore istiyorsaniz SANDIK modunu secin.
+  #
+  #            Ayrica vanilla malzeme slotu tek yigin tasir: fiyat, odeme
+  #            esyasinin max stack degerini asamaz (genelde 64).
+  #
+  #  SANDIK -> Ozel sandik menusu. Asagidaki product-lore, filler, navigation
+  #            ve empty ayarlari yalnizca bu modda kullanilir. Fiyatlar icin
+  #            yigin siniri yoktur, toplu takas (shift+tik) desteklenir.
+  # ---------------------------------------------------------------------
+  menu-type: "KOYLU"
+
+  # Menu basligi - her zaman &0 ile baslamalidir. (iki modda da gecerli)
+  title: "&0Şanslı Tüccar"
+  # Satir sayisi (3 - 6 arasi). Yalnizca SANDIK modunda kullanilir.
+  rows: 6
+  # Menuyu acarken/takas yaparken calan sesler.
+  # Hem enum adi (BLOCK_NOTE_BLOCK_HARP) hem namespaced anahtar
+  # (block.note_block.harp) kabul edilir. Bos birakilirsa o ses calmaz.
+  sounds:
+    enabled: true
+    open: "BLOCK_NOTE_BLOCK_HARP"
+    success: "ENTITY_PLAYER_LEVELUP"
+    fail: "ENTITY_VILLAGER_NO"
+
+  # Kenarlardaki dolgu esyasi. (SANDIK modu)
+  filler:
+    enabled: true
+    material: "GRAY_STAINED_GLASS_PANE"
+    name: "&r"
+
+  # Urun ikonunun altina eklenen aciklama (lore). (SANDIK modu)
+  # Placeholder: %urun%  %verilecek%  %karsilik%  %ana_fiyat%  %indirim_fiyat%
+  #              %indirim_yuzde%  %kazanc%
+  product-lore:
+    - ""
+    - "&#00D420▸ &7Bu takas sonucunda kazanacağın:"
+    - "  &8• &#00D420%verilecek%"
+    - ""
+    - "&#00D420▸ &7Takas karşılığı:"
+    - "  &8• &7Normal Fiyat: &#ffd500&m%ana_fiyat%x %karsilik%"
+    - "  &8• &7İndirimli Fiyat: &#ffd500%indirim_fiyat%x %karsilik%"
+    - ""
+    - "&#ffd500✦ &7Sana özel &#00D420%indirim_yuzde%%&7 indirim uygulandı."
+    - "&#ffd500✦ &7Cebinde &#00D420%kazanc%x %karsilik% &7kalıyor."
+    - ""
+    - "&#00D420➜ &7Takas yapmak için &#00D420SOL TIK&7."
+    - "&#00D420➜ &7Toplu takas için &#00D420SHIFT + SOL TIK&7."
+
+  # Navigasyon butonlari (son satir). (SANDIK modu)
+  navigation:
+    previous:
+      material: "ARROW"
+      name: "&#00D420« Önceki Sayfa"
+      lore:
+        - "&7Sayfa &#ffd500%onceki%&7 / &#ffd500%toplam%"
+    next:
+      material: "ARROW"
+      name: "&#00D420Sonraki Sayfa »"
+      lore:
+        - "&7Sayfa &#ffd500%sonraki%&7 / &#ffd500%toplam%"
+    close:
+      material: "BARRIER"
+      name: "&#FF4B4BMenüyü Kapat"
+      lore:
+        - "&7Tüccarın yanından ayrıl."
+    info:
+      enabled: true
+      material: "EMERALD"
+      name: "&#15FF08Şanslı Tüccar"
+      lore:
+        - ""
+        - "&7Bugün sana özel indirimli"
+        - "&7takaslar sunuyorum &#00D420%oyuncu%&7."
+        - ""
+        - "&8▸ &7Aktif takas: &#ffd500%urun_sayisi%"
+
+  # Hicbir aktif urun yokken gosterilecek ikon. (SANDIK modu)
+  empty:
+    material: "COBWEB"
+    name: "&#FF4B4BStoklar Tükendi"
+    lore:
+      - ""
+      - "&7Şu anda takas edebileceğim"
+      - "&7hiçbir ürün kalmadı."
+      - ""
+      - "&8▸ &7Daha sonra tekrar uğra!"
+
+# ---------------------------------------------------------------------------
+#  NPC (TUCCAR) AYARLARI
+# ---------------------------------------------------------------------------
+npc:
+  # NPC'nin tepesinde gorunecek isim.
+  name: "&#15FF08Şanslı Tüccar &8▸ &7Tıkla!"
+  # Isim etiketi surekli gorunsun mu?
+  name-always-visible: true
+  # Villager tipi ve meslegi (gorsel amacli).
+  # Meslekler: NONE, ARMORER, BUTCHER, CARTOGRAPHER, CLERIC, FARMER, FISHERMAN,
+  #            FLETCHER, LEATHERWORKER, LIBRARIAN, MASON, NITWIT, SHEPHERD, WEAPONSMITH
+  profession: "LIBRARIAN"
+  # Tipler: DESERT, JUNGLE, PLAINS, SAVANNA, SNOW, SWAMP, TAIGA
+  type: "PLAINS"
+  # Villager seviyesi (1-5) - rozet gorunumu icin.
+  level: 5
+  # NPC'ye sag tiklandiginda oynatilacak efekt. Bos = sessiz.
+  interact-sound: "ENTITY_VILLAGER_YES"
+  # `/st npc sil` komutunun tarama yaricapi (blok).
+  remove-radius: 5.0
+  # Sunucu genelinde en fazla kac tuccar NPC'si olusturulabilir?
+  max-count: 100
+  # Bu dunyalarda tuccar yerlestirilemez. Ornek: ["world_nether", "arena"]
+  disabled-worlds: []
+
+  # -------------------------------------------------------------------
+  #  KAYIP NPC KURTARMA
+  #  NPC'ler zaten kalici (persistent) olarak dunyaya kaydedilir. Buradaki
+  #  mekanizma yalnizca mob temizleyici / "/kill" gibi dis mudahalelere
+  #  karsi bir emniyet agidir.
+  #
+  #  Dogrulama, entity deposunun yuklendigi KESIN anda yapilir; boylece
+  #  "henuz yuklenmedi" durumu "silinmis" sanilip kopya NPC uretilmez.
+  # -------------------------------------------------------------------
+  restore:
+    enabled: true
+    # Ayni kayit icin en fazla kac kez yeniden dogurma denensin?
+    # Baska bir eklenti NPC'yi surekli siliyorsa sonsuz dongu olusmaz.
+    max-attempts: 3

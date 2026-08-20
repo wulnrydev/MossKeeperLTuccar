@@ -89,3 +89,5 @@ versions/
 secrets.yml
 secrets.yaml
 credentials.json
+# Gelistirme artefaktlari
+prompt.md

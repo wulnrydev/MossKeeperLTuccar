@@ -1,0 +1,29 @@
+name: MossKeeperLTuccar
+version: '${project.version}'
+main: dev.wulnry.mosskeeper.MossKeeperLTuccar
+api-version: '1.20'
+author: wulnrydev
+description: BoxMining - Sansli Tuccar (Lucky Trader) takas sistemi.
+website: https://github.com/wulnrydev
+folia-supported: false
+
+commands:
+  şanslıtüccar:
+    description: MossKeeperLTuccar ana komutu.
+    usage: /şanslıtüccar
+    # Yetki kontrolu kasten burada DEGIL, CommandManager icinde yapilir:
+    # plugin.yml'e permission yazilirsa yetkisiz oyuncu Bukkit'in "Unknown
+    # command" mesajini alir ve eklentinin ozel mesaji hic gorunmez.
+    aliases:
+      - sanslituccar
+      - stuccar
+      - şt
+      - mosskeeper
+
+permissions:
+  mosskeeper.admin:
+    description: Sansli Tuccar yonetim komutlarini kullanma yetkisi.
+    default: op
+  mosskeeper.use:
+    description: Tuccar NPC'si ile etkilesime girme yetkisi.
+    default: true
